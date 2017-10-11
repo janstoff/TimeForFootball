@@ -6,25 +6,41 @@ import {
 	Text,
 	Platform
 } from 'react-native'
-import { white, rolandCyan, blue, gray } from '../utils/colors'
-//import TopBar from '../components/TopBar'
-import { TabNavigator } from 'react-navigation'
+import { white, rolandCyan, primaryColorLight, gray, lightBlue } from '../utils/colors'
+import TopBar from '../components/TopBar'
+import { TabNavigator, DrawerNavigator } from 'react-navigation'
 import NotificationScreen from './NotificationScreen'
-import CalendarScreen from './CalendarScreen'
+import EventsScreen from './EventsScreen'
 import FeedScreen from './FeedScreen'
 import PlayersScreen from './PlayersScreen'
 import ProfileScreen from './ProfileScreen'
+import FriendsScreen from './FriendsScreen'
+import PitchesScreen from './PitchesScreen'
+import SettingsScreen from './SettingsScreen'
 import {
 	MaterialIcons,
 	MaterialCommunityIcons,
 	Ionicons,
-	Octicons
+	Octicons,
+	Foundation
 } from '@expo/vector-icons'
+
+
+const RightBottomDrawer = DrawerNavigator(
+	{
+		//Profile: {screen: ProfileScreen},
+		Friends: { screen: FriendsScreen },
+		//Events: { screen: EventsScreen },
+		Pitches: { screen: PitchesScreen },
+		Settings: { screen: SettingsScreen },
+	}
+)
+
 
 const MainScreenNavigatorBottom = TabNavigator(
 	{
-		Calendar: {
-			screen: CalendarScreen,
+		Feed: {
+			screen: FeedScreen,
 			navigationOptions: {
 				tabBarIcon: ({ tintColor }) =>
           Platform.OS === 'ios' ?  (
@@ -34,8 +50,8 @@ const MainScreenNavigatorBottom = TabNavigator(
         )
       }
     },
-		Feed: {
-			screen: FeedScreen,
+		Play: {
+			screen: EventsScreen,
 			navigationOptions: {
 				tabBarIcon: ({ tintColor }) =>
           Platform.OS === 'ios' ?  (
@@ -55,22 +71,36 @@ const MainScreenNavigatorBottom = TabNavigator(
 						<MaterialCommunityIcons name="speedometer" size={25} color={tintColor} />
 					)
 			}
-		}
+		},
+		List: {
+			screen: SettingsScreen,
+			navigationOptions: {
+				tabBarIcon: ({ tintColor }) =>
+          Platform.OS === 'ios' ?  (
+					<Foundation name="list" size={30} color={tintColor} />
+				) : (
+          <Foundation name="list" size={25} color={tintColor} />
+        )
+			}
+		},
 	},
 	{
 		navigationOptions: {
-			headerTintColor: blue
+			headerTintColor: primaryColorLight
 		},
-		//tabBarPosition: undefined,
+		tabBarPosition: 'bottom',
 		initialRouteName: 'Feed',
 		tabBarOptions: {
-			activeTintColor: Platform.OS === 'ios' ? blue : white,
+			activeTintColor: Platform.OS === 'ios' ? primaryColorLight : white,
 			activeBackgroundColor: white,
 			inactiveTintColor: white,
 			showLabel: false,
 			showIcon: true,
+			swipeEnabled: true,
 			style: {
-				backgroundColor: blue
+				height: 40,
+				backgroundColor: primaryColorLight,
+				borderTopColor: lightBlue
 			}
 		}
 	}
@@ -82,6 +112,7 @@ export default class HomeScreen extends Component {
 	render() {
 		return (
 			<View style={styles.container}>
+				<TopBar navigation={this.props.navigation}/>
 				<MainScreenNavigatorBottom navigation={this.props.navigation} />
 			</View>
 		)

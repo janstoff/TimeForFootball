@@ -8,7 +8,7 @@ import {
 	Animated
 } from 'react-native'
 import LoginForm from '../components/LoginForm'
-import { white, blue } from '../utils/colors'
+import { white, primaryBrandColor } from '../utils/colors'
 
 export default class LoginScreen extends Component {
 	static navigationOptions = { header: null }
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
 		flex: 1,
 		alignItems: 'center',
 		justifyContent: 'space-around',
-		backgroundColor: blue
+		backgroundColor: primaryBrandColor
 	},
 	appName: {
 		color: white,

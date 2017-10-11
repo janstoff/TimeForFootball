@@ -1,7 +1,7 @@
 import React from 'react'
 import { Text, View, StatusBar } from 'react-native'
 import { Constants } from 'expo'
-import { blue, white } from './utils/colors'
+import { primaryBrandColor, secondaryBrandColor, primaryColorLight, white } from './utils/colors'
 import { StackNavigator } from 'react-navigation'
 import HomeScreen from './containers/HomeScreen'
 import LoginScreen from './containers/LoginScreen'
@@ -25,28 +25,39 @@ const AppNavigator = StackNavigator(
 			screen: HomeScreen
 		},
 		Profile: {
-			screen: ProfileScreen
+			screen: ProfileScreen,
+			navigationOptions: {
+				title: 'Profile', //your name
+				headerTintColor: white,
+				headerStyle: {
+					backgroundColor: primaryColorLight,
+					height: 50
+				}
+			}
 		},
 		Notifications: {
 			screen: NotificationScreen,
 			navigationOptions: {
-				title: 'Messages',
+				title: 'Notifications',
 				headerTintColor: white,
 				headerStyle: {
-					backgroundColor: blue,
-					height: 20
+					backgroundColor: primaryColorLight,
+					height: 50
 				}
 			}
 		}
 	},
-	{ headerMode: 'screen' }
+	{
+		initialRouteName: 'Home', //for development normally Login or Home depending on status
+		headerMode: 'screen'
+	}
 )
 
 export default class App extends React.Component {
 	render() {
 		return (
 			<View style={{ flex: 1 }}>
-				<CustomStatusBar backgroundColor={blue} barStyle="light-content" />
+				<CustomStatusBar backgroundColor={primaryBrandColor} barStyle="light-content" />
 				<AppNavigator />
 			</View>
 		)

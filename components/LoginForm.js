@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { StyleSheet, View, TextInput, TouchableOpacity, Text } from 'react-native'
-import { white, rolandCyan, gray, lightGray } from '../utils/colors'
+import { white, secondaryBrandColor, gray, lightGray } from '../utils/colors'
 
 
 export default class LoginForm extends Component {
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     color: white
   },
   buttonContainer: {
-    backgroundColor: rolandCyan,
+    backgroundColor: secondaryBrandColor,
     paddingVertical: 15,
     shadowRadius: 2,
 		shadowOpacity: 0.5,
