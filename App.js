@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { Text, View, StatusBar } from 'react-native'
 import { Constants } from 'expo'
 import { primaryBrandColor, secondaryBrandColor, primaryColorLight, white } from './utils/colors'
@@ -53,7 +53,7 @@ const AppNavigator = StackNavigator(
 	}
 )
 
-export default class App extends React.Component {
+export default class App extends Component {
 	render() {
 		return (
 			<View style={{ flex: 1 }}>
