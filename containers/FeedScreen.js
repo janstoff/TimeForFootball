@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { StyleSheet, View, TouchableOpacity, Text } from 'react-native'
-import { Button, Card } from 'react-native-elements'
 import {
 	white,
 	usOpenBlue,
@@ -9,7 +8,7 @@ import {
 	secondaryBrandColor
 } from '../utils/colors'
 import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons'
-import FeedSwipeContainer from './FeedSwipeContainer'
+import MatchCardsContainer from './Feed_MatchCardsContainer'
 
 const DATA = [
 	{
@@ -55,34 +54,6 @@ const DATA = [
 ]
 
 export default class FeedScreen extends Component {
-	renderCard(card) {
-		return (
-			<Card key={card.id} title={card.text} image={{ uri: card.uri }}>
-				<Text style={{ marginBottom: 10 }}>
-					I can customize the card further.
-				</Text>
-				<Button
-					icon={{ name: 'code' }}
-					backgroundColor={secondaryBrandColor}
-					title="View Now!"
-				/>
-			</Card>
-		)
-	}
-
-	renderNoMoreCards() {
-		return (
-			<Card title="No more Games!">
-				<Text style={{ marginBottom: 10 }}>
-					There are currently no more games in your area.
-				</Text>
-				<Button
-					backgroundColor={secondaryBrandColor}
-					title="Increase Search Radius"
-				/>
-			</Card>
-		)
-	}
 
 	render() {
 		const { navigation } = this.props
@@ -91,7 +62,7 @@ export default class FeedScreen extends Component {
 			<View style={styles.container}>
 				<View>
 					<Text>Feed</Text>
-					<FeedSwipeContainer
+					<MatchCardsContainer
 						data={DATA}
 						renderCard={this.renderCard}
 						renderNoMoreCards={this.renderNoMoreCards}

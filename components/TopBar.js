@@ -14,7 +14,7 @@ import {
 	gray,
 	lightGray
 } from '../utils/colors'
-import { MaterialIcons, Ionicons } from '@expo/vector-icons'
+import { Ionicons } from '@expo/vector-icons'
 
 export default class TopBar extends Component {
 	render() {
@@ -37,8 +37,8 @@ export default class TopBar extends Component {
 					}>
 					Time For Football
 				</Text>
-				<TouchableOpacity onPress={() => navigation.navigate('Notifications')}>
-					<MaterialIcons style={styles.logo} name="message" size={25} />
+				<TouchableOpacity onPress={() => navigation.navigate('Settings')}>
+					<Ionicons style={styles.logo} name={Platform.OS === 'ios' ? 'ios-settings' : 'md-settings'} size={25} />
 				</TouchableOpacity>
 			</View>
 		)

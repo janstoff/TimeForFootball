@@ -2,11 +2,14 @@ import React, { Component } from 'react'
 import {
 	StyleSheet,
 	View,
+	ScrollView,
 	TouchableOpacity,
 	Text,
 	Animated,
 	PanResponder,
-	Dimensions
+	Dimensions,
+	UIManager,
+	LayoutAnimation
 } from 'react-native'
 import {
 	primaryBrandColor,
@@ -20,7 +23,7 @@ const SCREEN_WIDTH = Dimensions.get('window').width
 const SWIPE_THRESHOLD = SCREEN_WIDTH * 0.25
 const SWIPE_OUT_DURATION = 250
 
-class FeedSwipeContainer extends Component {
+class CardsContainer extends Component {
 	static defaultProps = {
 		//define default props here for reusable components not to throw errors
 		//when props not yet passed in
@@ -54,6 +57,21 @@ class FeedSwipeContainer extends Component {
 		this.position = position
 		this.state = { index: 0 }
 	}
+
+	componentWillReceiveProps(nextProps) {
+	if(nextProps.data !== this.props.data) {
+		//if the set of data changes show the new data starting at index 0
+		this.setState({ index: 0 })
+	}
+}
+
+componentWillUpdate() {
+	//whenever the component updates we will animate the change with a general spring()
+	UIManager.setLayoutAnimationEnabledExperimental && UIManager.setLayoutAnimationEnabledExperimental(true)
+	//android specific compatibility code (if the function exists, call it with true)
+
+	LayoutAnimation.spring()
+}
 
 	forceSwipe(direction) {
 		const offScreenRespectiveSide =
@@ -107,7 +125,7 @@ class FeedSwipeContainer extends Component {
 				return null
 			}
 
-			if (thatcardsIndex === this.state.index) {
+			if (thatcardsIndex >= this.state.index) {
 				return (
 					<Animated.View
 						key={card.id}
@@ -117,15 +135,14 @@ class FeedSwipeContainer extends Component {
 					</Animated.View>
 				)
 			}
-			return renderCard(card)
 		})
 	}
 
 	render() {
 		return (
-			<View style={styles.container}>
+			<ScrollView style={styles.container}>
 				<View>{this.renderCards()}</View>
-			</View>
+			</ScrollView>
 		)
 	}
 }
@@ -152,4 +169,4 @@ const styles = StyleSheet.create({
 	}
 })
 
-export default FeedSwipeContainer
+export default CardsContainer

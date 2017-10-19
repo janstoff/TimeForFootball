@@ -6,7 +6,7 @@ import { StackNavigator } from 'react-navigation'
 import HomeScreen from './containers/HomeScreen'
 import LoginScreen from './containers/LoginScreen'
 import ProfileScreen from './containers/ProfileScreen'
-import NotificationScreen from './containers/NotificationScreen'
+import SettingsScreen from './containers/SettingsScreen'
 
 function CustomStatusBar({ backgroundColor, ...props }) {
 	return (
@@ -35,10 +35,10 @@ const AppNavigator = StackNavigator(
 				}
 			}
 		},
-		Notifications: {
-			screen: NotificationScreen,
+		Settings: {
+			screen: SettingsScreen,
 			navigationOptions: {
-				title: 'Notifications',
+				title: 'Settings',
 				headerTintColor: white,
 				headerStyle: {
 					backgroundColor: primaryColorLight,
