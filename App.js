@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { Provider } from 'react-redux'
+import store from './redux/Store.js'
 import { Text, View, StatusBar } from 'react-native'
 import { Constants } from 'expo'
 import { primaryBrandColor, secondaryBrandColor, primaryColorLight, white } from './utils/colors'
@@ -48,7 +50,7 @@ const AppNavigator = StackNavigator(
 		}
 	},
 	{
-		initialRouteName: 'Home', //for development normally Login or Home depending on status
+		initialRouteName: 'Login', //for development normally Login or Home depending on status
 		headerMode: 'screen'
 	}
 )
@@ -56,10 +58,12 @@ const AppNavigator = StackNavigator(
 export default class App extends Component {
 	render() {
 		return (
-			<View style={{ flex: 1 }}>
-				<CustomStatusBar backgroundColor={primaryBrandColor} barStyle="light-content" />
-				<AppNavigator />
-			</View>
+			<Provider store={store}>
+				<View style={{ flex: 1 }}>
+					<CustomStatusBar backgroundColor={primaryBrandColor} barStyle="light-content" />
+					<AppNavigator />
+				</View>
+			</Provider>
 		)
 	}
 }
