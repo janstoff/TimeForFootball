@@ -9,13 +9,13 @@ import {
 import { white, rolandCyan, primaryColorLight, gray, lightBlue } from '../utils/colors'
 import TopBar from '../components/TopBar'
 import { TabNavigator, DrawerNavigator } from 'react-navigation'
-import EventsScreen from './EventsScreen'
-import FeedScreen from './FeedScreen'
-import PlayersScreen from './PlayersScreen'
-import ProfileScreen from './ProfileScreen'
-import FriendsScreen from './FriendsScreen'
-import PitchesScreen from './PitchesScreen'
-import NotificationsScreen from './NotificationsScreen'
+import EventsScreen from './Events_Screen'
+import FeedScreen from './Feed_Screen'
+import PlayersScreen from './Players_Screen'
+import ProfileScreen from './Profile_Screen'
+import FriendsScreen from './Friends_Screen'
+import PitchesScreen from './Pitches_Screen'
+import NotificationsScreen from './Notifications_Screen'
 import {
 	MaterialIcons,
 	MaterialCommunityIcons,

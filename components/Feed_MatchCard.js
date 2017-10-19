@@ -114,7 +114,16 @@ class MatchCard extends Component {
 const styles = StyleSheet.create({
 	container: {
 		backgroundColor: white
-	}
+	},
+  card: {
+    shadowRadius: 2,
+		shadowOpacity: 0.5,
+		shadowColor: primaryBrandColor,
+		shadowOffset: {
+			width: 0,
+			height: 3
+		}
+  }
 })
 
 export default MatchCard

@@ -7,7 +7,7 @@ import {
 	KeyboardAvoidingView,
 	Animated
 } from 'react-native'
-import LoginForm from '../components/LoginForm'
+import LoginForm from '../components/Login_Form'
 import { white, primaryBrandColor } from '../utils/colors'
 
 export default class LoginScreen extends Component {

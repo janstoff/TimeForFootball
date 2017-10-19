@@ -3,10 +3,10 @@ import { Text, View, StatusBar } from 'react-native'
 import { Constants } from 'expo'
 import { primaryBrandColor, secondaryBrandColor, primaryColorLight, white } from './utils/colors'
 import { StackNavigator } from 'react-navigation'
-import HomeScreen from './containers/HomeScreen'
-import LoginScreen from './containers/LoginScreen'
-import ProfileScreen from './containers/ProfileScreen'
-import SettingsScreen from './containers/SettingsScreen'
+import HomeScreen from './containers/Home_Screen'
+import LoginScreen from './containers/Login_Screen'
+import ProfileScreen from './containers/Profile_Screen'
+import SettingsScreen from './containers/Settings_Screen'
 
 function CustomStatusBar({ backgroundColor, ...props }) {
 	return (

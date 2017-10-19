@@ -25,45 +25,40 @@ const SWIPE_THRESHOLD = SCREEN_WIDTH * 0.25
 const SWIPE_OUT_DURATION = 250
 
 class MatchCardsContainer extends Component {
-componentWillUpdate() {
-	//whenever the component updates we will animate the change with a general spring()
-	UIManager.setLayoutAnimationEnabledExperimental && UIManager.setLayoutAnimationEnabledExperimental(true)
-	//android specific compatibility code (if the function exists, call it with true)
+	componentWillUpdate() {
+		//whenever the component updates we will animate the change with a general spring()
+		UIManager.setLayoutAnimationEnabledExperimental &&
+			UIManager.setLayoutAnimationEnabledExperimental(true)
+		//android specific compatibility code (if the function exists, call it with true)
 
-	LayoutAnimation.spring()
-}
+		LayoutAnimation.spring()
+	}
 
-renderNoMoreCardsInfo() {
-	return (
-		<Card title="No more Games!">
-			<Text style={{ marginBottom: 10 }}>
-				There are currently no more games in your area.
-			</Text>
-			<Button
-				backgroundColor={secondaryBrandColor}
-				title="Increase Search Radius"
-			/>
-		</Card>
-	)
-}
-
+	renderNoMoreMatchesInfo() {
+		return (
+			<Card title="No more Games!">
+				<Text style={{ marginBottom: 10 }}>
+					There are currently no more games in your area.
+				</Text>
+				<Button
+					backgroundColor={secondaryBrandColor}
+					title="Increase Search Radius"
+				/>
+			</Card>
+		)
+	}
 
 	render() {
 		const { data } = this.props
 
 		return (
 			<ScrollView style={styles.container}>
-				{data.map( card => {
-					return (
-						<MatchCard key={card.id} card={card} />
-					)
-				})}
-				{this.renderNoMoreCardsInfo()}
+				{data.map(card => <MatchCard key={card.id} card={card} />)}
+				{this.renderNoMoreMatchesInfo()}
 			</ScrollView>
 		)
 	}
 }
-
 
 const styles = StyleSheet.create({
 	container: {
