@@ -6,9 +6,15 @@ import {
 	Text,
 	Platform
 } from 'react-native'
-import { white, rolandCyan, primaryColorLight, gray, lightBlue } from '../utils/colors'
+import {
+	white,
+	rolandCyan,
+	primaryColorLight,
+	gray,
+	lightBlue
+} from '../utils/colors'
 import TopBar from '../components/TopBar'
-import { TabNavigator, DrawerNavigator } from 'react-navigation'
+import { TabNavigator } from 'react-navigation'
 import EventsScreen from './Events_Screen'
 import FeedScreen from './Feed_Screen'
 import PlayersScreen from './Players_Screen'
@@ -16,14 +22,7 @@ import ProfileScreen from './Profile_Screen'
 import FriendsScreen from './Friends_Screen'
 import PitchesScreen from './Pitches_Screen'
 import NotificationsScreen from './Notifications_Screen'
-import {
-	MaterialIcons,
-	MaterialCommunityIcons,
-	Ionicons,
-	Octicons,
-	Foundation
-} from '@expo/vector-icons'
-
+import { MaterialCommunityIcons, Ionicons } from '@expo/vector-icons'
 
 const MainScreenNavigatorBottom = TabNavigator(
 	{
@@ -31,22 +30,22 @@ const MainScreenNavigatorBottom = TabNavigator(
 			screen: FeedScreen,
 			navigationOptions: {
 				tabBarIcon: ({ tintColor }) =>
-					Platform.OS === 'ios' ?  (
-					<Ionicons name="ios-football-outline" size={30} color={tintColor} />
-				) : (
-					<Ionicons name="ios-football-outline" size={25} color={tintColor} />
-				)
-      }
-    },
+					Platform.OS === 'ios' ? (
+						<Ionicons name="ios-football-outline" size={30} color={tintColor} />
+					) : (
+						<Ionicons name="ios-football-outline" size={25} color={tintColor} />
+					)
+			}
+		},
 		Scheduling: {
 			screen: EventsScreen,
 			navigationOptions: {
 				tabBarIcon: ({ tintColor }) =>
-				Platform.OS === 'ios' ?  (
-				<Ionicons name="ios-calendar" size={30} color={tintColor} />
-			) : (
-				<Ionicons name="md-calendar" size={25} color={tintColor} />
-			)
+					Platform.OS === 'ios' ? (
+						<Ionicons name="ios-calendar" size={30} color={tintColor} />
+					) : (
+						<Ionicons name="md-calendar" size={25} color={tintColor} />
+					)
 			}
 		},
 		Players: {
@@ -56,7 +55,11 @@ const MainScreenNavigatorBottom = TabNavigator(
 					Platform.OS === 'ios' ? (
 						<Ionicons name="ios-speedometer" size={30} color={tintColor} />
 					) : (
-						<MaterialCommunityIcons name="speedometer" size={25} color={tintColor} />
+						<MaterialCommunityIcons
+							name="speedometer"
+							size={25}
+							color={tintColor}
+						/>
 					)
 			}
 		},
@@ -64,13 +67,13 @@ const MainScreenNavigatorBottom = TabNavigator(
 			screen: NotificationsScreen,
 			navigationOptions: {
 				tabBarIcon: ({ tintColor }) =>
-          Platform.OS === 'ios' ?  (
-					<Ionicons name="ios-notifications" size={30} color={tintColor} />
-				) : (
-          <Ionicons name="md-notifications" size={25} color={tintColor} />
-        )
+					Platform.OS === 'ios' ? (
+						<Ionicons name="ios-notifications" size={30} color={tintColor} />
+					) : (
+						<Ionicons name="md-notifications" size={25} color={tintColor} />
+					)
 			}
-		},
+		}
 	},
 	{
 		navigationOptions: {
@@ -100,7 +103,7 @@ export default class HomeScreen extends Component {
 	render() {
 		return (
 			<View style={styles.container}>
-				<TopBar navigation={this.props.navigation}/>
+				<TopBar navigation={this.props.navigation} />
 				<MainScreenNavigatorBottom navigation={this.props.navigation} />
 			</View>
 		)

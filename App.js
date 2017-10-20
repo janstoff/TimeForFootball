@@ -5,11 +5,12 @@ import { Text, View, StatusBar } from 'react-native'
 import { Constants } from 'expo'
 import { primaryBrandColor, secondaryBrandColor, primaryColorLight, white } from './utils/colors'
 import { StackNavigator } from 'react-navigation'
-import AuthScreen from './containers/Auth_Screen'
-import LoginScreen from './containers/Login_Screen'
-import HomeScreen from './containers/Home_Screen'
-import ProfileScreen from './containers/Profile_Screen'
-import SettingsScreen from './containers/Settings_Screen'
+import WelcomeScreen from './screens/Welcome_Screen'
+import AuthScreen from './screens/Auth_Screen'
+import LoginScreen from './screens/Login_Screen'
+import HomeScreen from './screens/Home_Screen'
+import ProfileScreen from './screens/Profile_Screen'
+import SettingsScreen from './screens/Settings_Screen'
 
 function CustomStatusBar({ backgroundColor, ...props }) {
 	return (
@@ -21,6 +22,9 @@ function CustomStatusBar({ backgroundColor, ...props }) {
 
 const AppNavigator = StackNavigator(
 	{
+		Welcome: {
+			screen: WelcomeScreen
+		},
 		Authentication: {
 			screen: AuthScreen
 		},
@@ -54,7 +58,7 @@ const AppNavigator = StackNavigator(
 		}
 	},
 	{
-		initialRouteName: 'Authentication', //for development normally Login or Home depending on status
+		initialRouteName: 'Welcome', //for development normally Login or Home depending on status
 		headerMode: 'screen'
 	}
 )

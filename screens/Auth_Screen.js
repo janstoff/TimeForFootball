@@ -1,16 +1,32 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, KeyboardAvoidingView, AsyncStorage } from 'react-native'
+import {
+	View,
+	Text,
+	StyleSheet,
+	KeyboardAvoidingView,
+	AsyncStorage
+} from 'react-native'
 import { connect } from 'react-redux'
 import * as actions from '../redux/actions'
 import { white, primaryBrandColor } from '../utils/colors'
-
 
 class AuthScreen extends Component {
 	static navigationOptions = { header: null }
 
 	componentDidMount() {
-    AsyncStorage.removeItem('TimeForFootball-facebook-token')
+		AsyncStorage.removeItem('TimeForFootball-facebook-token')
 		this.props.facebookLogin()
+		this.onAuthComplete(this.props)
+	}
+
+	componentWillReceiveProps(nextProps) {
+		this.onAuthComplete(nextProps)
+	}
+
+	onAuthComplete(props) {
+		if (props.token) {
+			this.props.navigation.navigate('Home')
+		}
 	}
 
 	render() {
@@ -27,4 +43,10 @@ const styles = StyleSheet.create({
 	}
 })
 
-export default connect(null, actions)(AuthScreen)
+function mapStateToProps({ auth }) {
+	return {
+		token: auth.token
+	}
+}
+
+export default connect(mapStateToProps, actions)(AuthScreen)

@@ -1,7 +1,8 @@
 //main brand
 export const primaryBrandColor = '#3d6b5b'
 export const primaryColorLight = '#5a8677'
-export const secondaryBrandColor = '#e0d169'
+export const secondaryBrandColor = '#f1e383'
+export const thirdBrandColor = '#f19783'
 
 
 

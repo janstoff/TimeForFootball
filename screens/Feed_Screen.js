@@ -8,7 +8,7 @@ import {
 	secondaryBrandColor
 } from '../utils/colors'
 import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons'
-import MatchCardsContainer from './Feed_MatchCardsContainer'
+import MatchCardsContainer from '../components/Feed_MatchCardsContainer'
 
 const DATA = [
 	{
