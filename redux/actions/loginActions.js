@@ -3,8 +3,8 @@ import { Facebook } from 'expo'
 
 import { FACEBOOK_AUTH_TOKEN, FACEBOOK_APP_ID } from '../../utils/login'
 
-const FACEBOOK_LOGIN_SUCCESS = 'FACEBOOK_LOGIN_SUCCESS'
-const FACEBOOK_LOGIN_FAIL = 'FACEBOOK_LOGIN_FAIL'
+export const FACEBOOK_LOGIN_SUCCESS = 'FACEBOOK_LOGIN_SUCCESS'
+export const FACEBOOK_LOGIN_FAIL = 'FACEBOOK_LOGIN_FAIL'
 
 export function facebookLogin() {
 	return async dispatch => {
@@ -23,7 +23,7 @@ export function facebookLogin() {
 	}
 }
 
-async function executeFacebookLogin() {
+async function executeFacebookLogin(dispatch) {
 	let { type, token } = await Facebook.logInWithReadPermissionsAsync(FACEBOOK_APP_ID, {
     permissions: ['public_profile']
   })
