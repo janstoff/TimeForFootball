@@ -7,10 +7,12 @@ import {
 	KeyboardAvoidingView,
 	Animated
 } from 'react-native'
+import { connect } from 'react-redux'
 import LoginForm from '../components/Login_Form'
 import { white, primaryBrandColor } from '../utils/colors'
+import * as actions from '../redux/actions'
 
-export default class LoginScreen extends Component {
+class LoginScreen extends Component {
 	static navigationOptions = { header: null }
 
 	state = {
@@ -85,3 +87,6 @@ const styles = StyleSheet.create({
 		width: 180
 	}
 })
+
+
+export default connect(null, actions)(LoginScreen)
