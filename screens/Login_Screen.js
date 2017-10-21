@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
 	},
 	appName: {
 		color: white,
-		marginTop: 100,
+		marginTop: 30,
 		textAlign: 'center',
 		opacity: 0.95,
 		fontSize: 22,

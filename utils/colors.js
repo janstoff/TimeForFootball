@@ -28,3 +28,7 @@ export const usOpenRed = '#C8102E'
 export const tennisBallGreen = '#D0DF00'
 export const wimbledonPurple = '#240046'
 export const wimbledonCentercourt = '#085716'
+
+//external
+export const facebookPrimary = '#3b5998'
+export const googlePrimary = '#d62d20'

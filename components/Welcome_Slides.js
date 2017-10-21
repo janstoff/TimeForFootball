@@ -30,7 +30,7 @@ class Slides extends Component {
                     <Button
                       buttonStyle={styles.button}
                       title="Get Started!"
-                      onPress={() => navigation.navigate('Login')}
+                      onPress={() => navigation.navigate('Authentication')}
                     />
                 )}
               </View>

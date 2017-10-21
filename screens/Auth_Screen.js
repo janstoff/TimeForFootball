@@ -14,8 +14,8 @@ class AuthScreen extends Component {
 	static navigationOptions = { header: null }
 
 	componentDidMount() {
-		AsyncStorage.removeItem('TimeForFootball-facebook-token')
-		this.props.facebookLogin()
+		//AsyncStorage.removeItem('TimeForFootball-facebook-token')
+		this.props.autoLogin()
 		this.onAuthComplete(this.props)
 	}
 
@@ -27,6 +27,7 @@ class AuthScreen extends Component {
 		if (props.token) {
 			this.props.navigation.navigate('Home')
 		}
+		this.props.navigation.navigate('Login')
 	}
 
 	render() {
