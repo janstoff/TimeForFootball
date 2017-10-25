@@ -1,5 +1,5 @@
 import { AsyncStorage } from 'react-native'
-import { Facebook } from 'expo'
+import { Facebook, Google } from 'expo'
 
 import { FACEBOOK_AUTH_TOKEN, GOOGLE_AUTH_TOKEN, OWN_EMAIL_AUTH_TOKEN, FACEBOOK_APP_ID } from '../../utils/login'
 
@@ -47,11 +47,39 @@ export function executeFacebookLogin() {
 	    return dispatch({ type: FACEBOOK_LOGIN_FAIL })
 	  }
 
-	  await AsyncStorage.setItem(FACEBOOK_AUTH_TOKEN, token)
+		let facebookToken = token
+
+	  await AsyncStorage.setItem(FACEBOOK_AUTH_TOKEN, facebookToken)
 	  //defensive code here in order to only dispatch success action in case the token is saved in storage
+
 	  dispatch({
 	    type: FACEBOOK_LOGIN_SUCCESS,
-	    token
+	    facebookToken
+	  })
+	}
+}
+
+
+export function executeGoogleLogin() {
+	return async dispatch => {
+		let { type, accessToken } = await Google.logInAsync({
+			androidClientId: GOOGLE_APP_ID_ANDROID,
+			iosClientId: GOOGLE_APP_ID_IOS,
+	    scopes: ['profile', 'email']
+	  })
+	  // result object returns a 'type' and a 'token' property
+
+	  if(type === 'cancel') {
+	    return dispatch({ type: GOOGLE_LOGIN_FAIL })
+	  }
+
+		let googleToken = accessToken
+
+	  await AsyncStorage.setItem(GOOGLE_AUTH_TOKEN, googleToken)
+	  //defensive code here in order to only dispatch success action in case the token is saved in storage
+	  dispatch({
+	    type: GOOGLE_LOGIN_SUCCESS,
+	    googleToken
 	  })
 	}
 }

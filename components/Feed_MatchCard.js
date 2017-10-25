@@ -8,6 +8,8 @@ import {
 	Dimensions
 } from 'react-native'
 import { Button, Card } from 'react-native-elements'
+import { connect } from 'react-redux'
+import * as actions from '../redux/actions'
 import {
 	primaryBrandColor,
 	primaryColorLight,
@@ -36,10 +38,12 @@ class MatchCard extends Component {
 		const panResponder = PanResponder.create({
 			//configurate PanResponder instance:
 			onStartShouldSetPanResponder: () => true,
+			onPanResponderGrant: () => this.props.switchScrollingOff(),
 			onPanResponderMove: (event, gesture) => {
 				position.setValue({ x: gesture.dx, y: gesture.dy })
 			},
 			onPanResponderRelease: (event, gesture) => {
+				this.props.switchScrollingOn()
 				if (gesture.dx > SWIPE_THRESHOLD) {
 					this.forceSwipe('right')
 				} else if (gesture.dx < -SWIPE_THRESHOLD) {
@@ -126,4 +130,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default MatchCard
+export default connect(null, actions)(MatchCard)

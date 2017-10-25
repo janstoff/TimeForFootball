@@ -5,12 +5,16 @@ import {
 	Image,
 	Text,
 	KeyboardAvoidingView,
-	Animated
+	Animated,
+	Dimensions
 } from 'react-native'
 import { connect } from 'react-redux'
-import LoginForm from '../components/Login_Form'
-import { white, primaryBrandColor } from '../utils/colors'
+import { Button } from 'react-native-elements'
+import { white, gray, lightGray, superLightGray, primaryBrandColor, primaryColorLight, secondaryBrandColor, facebookPrimary, googlePrimary, twitterLogoBlue, twitterDarkBlue } from '../utils/colors'
 import * as actions from '../redux/actions'
+
+const SCREEN_WIDTH = Dimensions.get('window').width
+
 
 class LoginScreen extends Component {
 	static navigationOptions = { header: null }
@@ -31,7 +35,9 @@ class LoginScreen extends Component {
 	}
 
 	render() {
-		const { opacity, width, height } = this.state
+		const { opacity, width, height, emailLoginOpen } = this.state
+		const { executeFacebookLogin, navigation } = this.props
+
 
 		return (
 			<KeyboardAvoidingView behavior="padding" style={styles.container}>
@@ -45,9 +51,49 @@ class LoginScreen extends Component {
 						The best way to organise your play time.
 					</Text>
 				</View>
-				<View style={styles.formContainer}>
-					<LoginForm navigation={this.props.navigation} />
-				</View>
+				{emailLoginOpen ? (
+					<View>
+						<LoginForm navigation={this.props.navigation} />
+					</View>
+				) : (
+					<View>
+						<Button
+		          title='login with facebook'
+		          color='white'
+		          backgroundColor={facebookPrimary}
+		          icon={{ name: 'facebook-square', type: 'font-awesome' }}
+							onPress={() => executeFacebookLogin()}
+							buttonStyle={styles.buttonStyle}
+						/>
+		        <Button
+		          title='login with Google'
+		          color='white'
+		          backgroundColor={googlePrimary}
+		          icon={{ name: 'google', type: 'font-awesome' }}
+							onPress={() => console.log('google Login')}
+		          buttonStyle={styles.buttonStyle}
+						/>
+						{/*
+						<Button
+		          title='login with Twitter'
+		          color={twitterDarkBlue}
+		          backgroundColor={superLightGray}
+		          icon={{ name: 'twitter', type: 'font-awesome', color: twitterLogoBlue }}
+							onPress={() => console.log('Twitter Login')}
+		          buttonStyle={styles.buttonStyle}
+						/>
+						*/}
+						<Button
+		          title='login with Email'
+		          color={gray}
+		          backgroundColor={secondaryBrandColor}
+							iconLeft
+		          icon={{ name: 'mail', type: 'entypo', color: gray }}
+							onPress={() => navigation.navigate('LoginEmail')}
+		          buttonStyle={styles.buttonStyle}
+						/>
+					</View>
+				)}
 			</KeyboardAvoidingView>
 		)
 	}
@@ -58,7 +104,7 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		alignItems: 'center',
-		justifyContent: 'space-around',
+		justifyContent: 'center',
 		backgroundColor: primaryBrandColor
 	},
 	appName: {
@@ -85,6 +131,18 @@ const styles = StyleSheet.create({
 		textAlign: 'center',
 		opacity: 0.9,
 		width: 180
+	},
+	buttonStyle: {
+		width: SCREEN_WIDTH*0.8,
+		marginBottom: 20,
+		borderRadius: 2.5,
+		shadowRadius: 2.5,
+		shadowOpacity: 0.4,
+		shadowColor: primaryColorLight,
+		shadowOffset: {
+			width: 0,
+			height: 3
+		}
 	}
 })
 

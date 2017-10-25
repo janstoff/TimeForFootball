@@ -1,7 +1,7 @@
 //main brand
 export const primaryBrandColor = '#3d6b5b'
 export const primaryColorLight = '#5a8677'
-export const secondaryBrandColor = '#f1e383'
+export const secondaryBrandColor = '#fff84e'
 export const thirdBrandColor = '#f19783'
 
 
@@ -9,6 +9,7 @@ export const thirdBrandColor = '#f19783'
 //basic
 export const gray = '#757575'
 export const lightGray = '#c8c3c3'
+export const superLightGray = '#eeeeee'
 export const white = 'rgb(255, 255, 255)'
 export const black = '#000000'
 export const orange = '#f26f28'
@@ -32,3 +33,5 @@ export const wimbledonCentercourt = '#085716'
 //external
 export const facebookPrimary = '#3b5998'
 export const googlePrimary = '#d62d20'
+export const twitterLogoBlue = '#00aced'
+export const twitterDarkBlue = '#0084b4'

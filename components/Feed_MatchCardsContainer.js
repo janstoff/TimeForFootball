@@ -11,6 +11,7 @@ import {
 	LayoutAnimation
 } from 'react-native'
 import { Button, Card } from 'react-native-elements'
+import { connect } from 'react-redux'
 import {
 	primaryBrandColor,
 	primaryColorLight,
@@ -49,10 +50,13 @@ class MatchCardsContainer extends Component {
 	}
 
 	render() {
-		const { data } = this.props
+		const { data, scrolling } = this.props
 
 		return (
-			<ScrollView style={styles.container}>
+			<ScrollView
+					style={styles.container}
+					scrollEnabled={scrolling}
+				>
 				{data.map(card => <MatchCard key={card.id} card={card} />)}
 				{this.renderNoMoreMatchesInfo()}
 			</ScrollView>
@@ -82,4 +86,10 @@ const styles = StyleSheet.create({
 	}
 })
 
-export default MatchCardsContainer
+function mapStateToProps({ gestures }) {
+	return {
+		scrolling: gestures.scrolling
+	}
+}
+
+export default connect(mapStateToProps)(MatchCardsContainer)

@@ -8,6 +8,7 @@ import { StackNavigator } from 'react-navigation'
 import WelcomeScreen from './screens/Welcome_Screen'
 import AuthScreen from './screens/Auth_Screen'
 import LoginScreen from './screens/Login_Screen'
+import LoginEmailScreen from './screens/LoginEmail_Screen'
 import HomeScreen from './screens/Home_Screen'
 import ProfileScreen from './screens/Profile_Screen'
 import SettingsScreen from './screens/Settings_Screen'
@@ -30,6 +31,17 @@ const AppNavigator = StackNavigator(
 		},
 		Login: {
 			screen: LoginScreen
+		},
+		LoginEmail:{
+			screen: LoginEmailScreen,
+			navigationOptions: {
+				title: 'Login with your Email',
+				headerTintColor: white,
+				headerStyle: {
+					backgroundColor: primaryBrandColor,
+					height: 50
+				}
+			}
 		},
 		Home: {
 			screen: HomeScreen
@@ -58,7 +70,7 @@ const AppNavigator = StackNavigator(
 		}
 	},
 	{
-		initialRouteName: 'Welcome', //for development normally Login or Home depending on status
+		initialRouteName: 'Login', //for development normally Login or Home depending on status
 		headerMode: 'screen'
 	}
 )
