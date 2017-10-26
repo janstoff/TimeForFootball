@@ -11,6 +11,8 @@ import {
 	UIManager,
 	LayoutAnimation
 } from 'react-native'
+import { Button, Card } from 'react-native-elements'
+import MatchCard from './Feed_MatchCard_Tinder'
 import {
 	primaryBrandColor,
 	primaryColorLight,
@@ -23,7 +25,7 @@ const SCREEN_WIDTH = Dimensions.get('window').width
 const SWIPE_THRESHOLD = SCREEN_WIDTH * 0.25
 const SWIPE_OUT_DURATION = 250
 
-class CardsContainer extends Component {
+class MatchCardsDeck extends Component {
 	static defaultProps = {
 		//define default props here for reusable components not to throw errors
 		//when props not yet passed in
@@ -59,19 +61,20 @@ class CardsContainer extends Component {
 	}
 
 	componentWillReceiveProps(nextProps) {
-	if(nextProps.data !== this.props.data) {
-		//if the set of data changes show the new data starting at index 0
-		this.setState({ index: 0 })
+		if (nextProps.data !== this.props.data) {
+			//if the set of data changes show the new data starting at index 0
+			this.setState({ index: 0 })
+		}
 	}
-}
 
-componentWillUpdate() {
-	//whenever the component updates we will animate the change with a general spring()
-	UIManager.setLayoutAnimationEnabledExperimental && UIManager.setLayoutAnimationEnabledExperimental(true)
-	//android specific compatibility code (if the function exists, call it with true)
+	componentWillUpdate() {
+		//whenever the component updates we will animate the change with a general spring()
+		UIManager.setLayoutAnimationEnabledExperimental &&
+			UIManager.setLayoutAnimationEnabledExperimental(true)
+		//android specific compatibility code (if the function exists, call it with true)
 
-	LayoutAnimation.spring()
-}
+		LayoutAnimation.spring()
+	}
 
 	forceSwipe(direction) {
 		const offScreenRespectiveSide =
@@ -112,11 +115,25 @@ componentWillUpdate() {
 		}
 	}
 
-	renderCards() {
-		const { data, renderCard, renderNoMoreCards } = this.props
+	renderNoMoreMatchesInfo() {
+		return (
+			<Card title="No more Games!">
+				<Text style={{ marginBottom: 10 }}>
+					There are currently no more games in your area.
+				</Text>
+				<Button
+					backgroundColor={secondaryBrandColor}
+					title="Increase Search Radius"
+				/>
+			</Card>
+		)
+	}
 
-		if(this.state.index >= data.length) {
-			return renderNoMoreCards()
+	renderCards() {
+		const { data, renderCard } = this.props
+
+		if (this.state.index >= data.length) {
+			return this.renderNoMoreMatchesInfo()
 		}
 
 		return data.map((card, thatcardsIndex) => {
@@ -125,48 +142,46 @@ componentWillUpdate() {
 				return null
 			}
 
-			if (thatcardsIndex >= this.state.index) {
+			if (thatcardsIndex === this.state.index) {
 				return (
 					<Animated.View
 						key={card.id}
-						style={this.topCardBehavior()}
+						style={[this.topCardBehavior(), styles.card]}
 						{...this.panResponder.panHandlers}>
-						{renderCard(card)}
+						<MatchCard card={card} />
 					</Animated.View>
 				)
 			}
-		})
+
+			return (
+				<Animated.View
+						key={card.id}
+						style={[styles.card, { top: 2 * (thatcardsIndex - this.state.index) }]}>
+					<MatchCard card={card} />
+				</Animated.View>
+			)
+		}).reverse()
 	}
 
 	render() {
 		return (
-			<ScrollView style={styles.container}>
-				<View>{this.renderCards()}</View>
-			</ScrollView>
+			<View style={styles.container}>
+				{this.renderCards()}
+			</View>
 		)
 	}
 }
 
 const styles = StyleSheet.create({
 	container: {
-		backgroundColor: white
+		backgroundColor: white,
+		alignItems: 'center'
 	},
-	buttonContainer: {
-		backgroundColor: secondaryBrandColor,
-		paddingVertical: 15,
-		shadowRadius: 2,
-		shadowOpacity: 0.5,
-		shadowColor: gray,
-		shadowOffset: {
-			width: 0,
-			height: 3
-		}
-	},
-	buttonText: {
-		textAlign: 'center',
-		color: white,
-		fontWeight: '600'
+	card: {
+		position: 'absolute',
+		width: SCREEN_WIDTH,
+		padding: 10
 	}
 })
 
-export default CardsContainer
+export default MatchCardsDeck

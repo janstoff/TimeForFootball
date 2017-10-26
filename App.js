@@ -70,7 +70,7 @@ const AppNavigator = StackNavigator(
 		}
 	},
 	{
-		initialRouteName: 'Login', //for development normally Login or Home depending on status
+		initialRouteName: 'Home', //for development normally Login or Home depending on status
 		headerMode: 'screen'
 	}
 )

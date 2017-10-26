@@ -9,6 +9,8 @@ import {
 } from '../utils/colors'
 import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons'
 import MatchCardsContainer from '../components/Feed_MatchCardsContainer'
+import MatchCardsDeck from '../components/Feed_MatchCardsDeck_Tinder'
+
 
 const DATA = [
 	{
@@ -61,11 +63,11 @@ export default class FeedScreen extends Component {
 		return (
 			<View style={styles.container}>
 				<View>
-					<Text>Feed</Text>
-					<MatchCardsContainer
+					<Text>FEED</Text>
+					<Text>Calendar (Horizonal scrolling & on click date selection & re-render of data)</Text>
+					<Text>Searching vs. Hosting</Text>
+					<MatchCardsDeck
 						data={DATA}
-						renderCard={this.renderCard}
-						renderNoMoreCards={this.renderNoMoreCards}
 					/>
 				</View>
 			</View>
